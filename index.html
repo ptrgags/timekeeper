@@ -10,19 +10,22 @@
     <!-- MomentJS -->
     <script src="scripts/moment.min.js"></script>
     <script src="scripts/moment-timezone-with-data.min.js"></script>
+
+    <!-- AngularJS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+
+    <!-- Main script -->
     <script src="scripts/main.js"></script>
 </head>
 <body>
-    <div class="container-fluid">
+    <div class="container-fluid" ng-app="timekeeper" ng-controller="timekeeper">
         <h1>Timekeeper</h1>
-        <div class="row">
-            <div class="col-sm-6">
-                <p id="test"></p>
-            </div>
-            <div class="col-sm-6">
-                <p id="test2"></p>
-            </div>
-        </div>
+        Right now it is: <br />
+        Local time: {{local()}} <br />
+        UTC Time: {{utc()}} <br/>
+        Unix: {{unix()}} <br/>
+        Timezone <select id="tz-select" ng-model="timezone">
+        </select>: {{custom()}}
     </div>
 </body>
 </html>
