@@ -6,6 +6,8 @@ var app = angular.module('timekeeper', [])
 app.controller('timekeeper', ["$scope", "$interval", ($scope, $interval) => {
     $scope.now = moment();
     $scope.timezone = "";
+
+    //Current time to local, UTC, unix and custom timezone
     $scope.local = () => {
         return $scope.now.local().format(FORMAT);
     };
@@ -21,6 +23,7 @@ app.controller('timekeeper', ["$scope", "$interval", ($scope, $interval) => {
         else
             return $scope.now.clone().tz($scope.timezone).format(FORMAT);
     };
+    //Convert to Swatch Internet Time just for fun
     $scope.swatch = () => {
         var utc1 = $scope.now.clone().add(1, "hour")
         var seconds = utc1.hours() * 3600
@@ -30,6 +33,8 @@ app.controller('timekeeper', ["$scope", "$interval", ($scope, $interval) => {
         var date = utc1.format("DD.MM.YYYY");
         return `${date} @${beats}`;
     }
+
+    //Find the difference in hours between two timezones
     $scope.tz_diff = () => {
         var hours_diff = "N/A";
         if ($scope.timezone_left && $scope.timezone_right) {
@@ -52,6 +57,7 @@ app.controller('timekeeper', ["$scope", "$interval", ($scope, $interval) => {
 
         return diff_desc;
     }
+    //Convert time from one timezone to another.
     $scope.time_right = () => {
         if (!$scope.datetime_left || !$scope.timezone_left || !$scope.timezone_right)
             return "N/A"
@@ -68,6 +74,21 @@ app.controller('timekeeper', ["$scope", "$interval", ($scope, $interval) => {
         return right_time.format(FORMAT);
     };
 
+    //Panel 3: Convert unix timestamp to UTC or local time
+    $scope.unix_to_utc = () => {
+        if (!$scope.unix_timestamp)
+            return "N/A"
+        else
+            return moment.unix($scope.unix_timestamp).utc().format(FORMAT);
+    };
+    $scope.unix_to_local = () => {
+        if (!$scope.unix_timestamp)
+            return "N/A"
+        else
+            return moment.unix($scope.unix_timestamp).format(FORMAT);
+    };
+
+    //Update the current time every second
     $interval(() => {
         $scope.now = moment();
     });

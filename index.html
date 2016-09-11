@@ -79,6 +79,20 @@
                 </div>
             </div>
         </div>
+        <div class="panel panel-info">
+            <div class="panel-heading">Convert Unix Timestamp</div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-sm-6">
+                        Unix Timestamp: <input type="number" ng-model="unix_timestamp" />
+                    </div>
+                    <div class="col-sm-6">
+                        Local: {{unix_to_local()}} <br/>
+                        UTC: {{unix_to_utc()}}
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </body>
 </html>
