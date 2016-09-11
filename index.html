@@ -20,12 +20,37 @@
 <body>
     <div class="container-fluid" ng-app="timekeeper" ng-controller="timekeeper">
         <h1>Timekeeper</h1>
-        Right now it is: <br />
-        Local time: {{local()}} <br />
-        UTC Time: {{utc()}} <br/>
-        Unix: {{unix()}} <br/>
-        Timezone <select id="tz-select" ng-model="timezone">
-        </select>: {{custom()}}
+        <div class="panel panel-success">
+            <div class="panel-heading">Current Time</div>
+            <div class="panel-body">
+                <table class="table">
+                    <tr>
+                        <th>Time Type</th>
+                        <th>Time Value</th>
+                    </tr>
+                    <tr>
+                        <td>Local Time</td>
+                        <td>{{local()}}</td>
+                    </tr>
+                    <tr>
+                        <td>UTC</td>
+                        <td>{{utc()}}</td>
+                    </tr>
+                    <tr>
+                        <td>Unix Timestamp</td>
+                        <td>{{unix()}}</td>
+                    </tr>
+                    <tr>
+                        <td><select id="tz-select" ng-model="timezone" /></td>
+                        <td>{{custom()}}</td>
+                    </tr>
+                    <tr>
+                        <td><a href="https://en.wikipedia.org/wiki/Swatch_Internet_Time">Swatch Internet Time</a></td>
+                        <td>{{swatch()}}</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
     </div>
 </body>
 </html>
