@@ -20,7 +20,7 @@
 <body>
     <div class="container-fluid" ng-app="timekeeper" ng-controller="timekeeper">
         <h1>Timekeeper</h1>
-        <div class="panel panel-success">
+        <div class="panel panel-info">
             <div class="panel-heading">Current Time</div>
             <div class="panel-body">
                 <table class="table">
@@ -41,14 +41,42 @@
                         <td>{{unix()}}</td>
                     </tr>
                     <tr>
-                        <td><select id="tz-select" ng-model="timezone" /></td>
+                        <td>
+                            Timezone:
+                            <select id="tz-select" ng-model="timezone">
+                            </select>
+                        </td>
                         <td>{{custom()}}</td>
                     </tr>
                     <tr>
-                        <td><a href="https://en.wikipedia.org/wiki/Swatch_Internet_Time">Swatch Internet Time</a></td>
+                        <td>
+                            <a href="https://en.wikipedia.org/wiki/Swatch_Internet_Time">
+                                Swatch Internet Time
+                            </a>
+                        </td>
                         <td>{{swatch()}}</td>
                     </tr>
                 </table>
+            </div>
+        </div>
+        <div class="panel panel-info">
+            <div class="panel-heading">Compare Time Zones</div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <h3>Timezone 1</h3>
+                        Timezone: <select id="tz-select-left" ng-model="timezone_left"></select> <br />
+                        Date: <input type="datetime-local" ng-model="datetime_left" /><br/>
+                    </div>
+                    <div class="col-sm-6">
+                        <h3>Timezone 2</h3>
+                        Timezone: <select id="tz-select-right" ng-model="timezone_right"></select><br/>
+                        Date: {{time_right()}}
+                    </div>
+                </div>
+                <div class="text-center">
+                    <h3>{{tz_diff()}}</h3>
+                </div>
             </div>
         </div>
     </div>
